@@ -1,0 +1,47 @@
+5. Write a program for 3 x8 decoder. Verify the logic using truth table and time wave
+
+module decoder(in,out);
+input [2:0]in;
+output [7:0]out;
+reg [7:0]out;
+always@(*) begin
+case(in)
+3'b000:out=8'b00000001;
+3'b001:out=8'b00000010;
+3'b010:out=8'b00000100;
+3'b011:out=8'b00001000;
+3'b100:out=8'b00010000;
+3'b101:out=8'b00100000;
+3'b110:out=8'b01000000;
+3'b111:out=8'b10000000;
+endcase
+end
+endmodule
+module testde;
+reg [2:0]in;
+wire [7:0]out;
+decoder m1(in,out);
+initial begin
+$dumpfile("deco.vcd");
+$dumpvars(0,testde);
+$display("in1 in2 in3 out0 out1 out2 out3 out4 out5 out6 out7");
+$monitor("%b%b%b\t%b%b%b%b%b%b%b%b",in[2],in[1],in[0],out[0],out[1],out[2],out[3],o
+ut[4],out[5],out[6],out[7]);
+in=3'b000;
+#10;
+in=3'b001;
+#10;
+in=3'b010;
+#10;
+in=3'b011;
+#10;
+in=3'b100;
+#10;
+in=3'b101;
+#10;
+in=3'b110;
+#10;
+in=3'b111;
+#10;
+end
+endmodule
